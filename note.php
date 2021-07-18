@@ -18,13 +18,14 @@ class Note extends CI_Controller {
         $args = func_get_args();
         if (isset($args[0])) $note_id = $args[0];
 
-        /* Save function*/
+        /* Saving */
         $save = $this->input->post('save');
+        
         if (!empty($save)) {
             $new_text = $this->input->post('text');
             $new_title= $this->input->post('title');
+            
             if (!empty($new_text) && !empty($new_title)) {
-
                 if ($note_id != 'new') {
                     $this->notes->update_note($note_id, $new_title, $new_text);
                     $data['error'] = "Запись успешно сохранена";
