@@ -20,9 +20,11 @@ class Login extends CI_Controller {
             if (!empty($pass) && !empty($name)) {
                 $this->load->database();
                 $this->load->model('notes');
+                    
                 if ($row = $this->notes->get_pass_and_name($pass, $name)) {
                     $pass_db = $row->password;
                     $name_db = $row->name;
+                        
                     if ($pass == $pass_db && $name == $name_db){
                         set_cookie('logged', TRUE, '3600');
                         $username_cript = $this->encryption->encrypt($name_db);
